@@ -2,8 +2,8 @@
   <div id="show-blogs" v-theme:column="'wide'">
     <h1>All blog Articles</h1>
     <div v-for="(blog, index) in blogs" v-bind:key="index" class="single-blog">
-      <h2 v-rainbow>{{ blog.title }}</h2>
-      <article>{{ blog.body }}</article>
+      <h2 v-rainbow>{{ blog.title | to-uppercase }}</h2>
+      <article>{{ blog.body | snippet }}</article>
     </div>
   </div>
 </template>

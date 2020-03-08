@@ -31,6 +31,15 @@ Vue.directive('theme', {
   }
 });
 
+//filters
+Vue.filter('to-uppercase', value => {
+  return value.toUpperCase();
+});
+
+Vue.filter('snippet', value => {
+  return value.slice(0, 100) + '...';
+});
+
 //event bus
 export const bus = new Vue();
 
