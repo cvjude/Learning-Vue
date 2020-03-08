@@ -33,6 +33,23 @@ export default {
         return blog.title.match(this.search);
       });
     }
+  },
+  filters: {
+    //filters
+    touppercase: value => {
+      return value.toUpperCase();
+    }
+  },
+  directives: {
+    rainbow: {
+      bind(el, binding, vnode) {
+        el.style.color =
+          '#' +
+          Math.random()
+            .toString()
+            .slice(2, 8);
+      }
+    }
   }
 };
 </script>
