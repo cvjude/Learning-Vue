@@ -1,12 +1,8 @@
 <template>
-  <div id="show-blogs" v-theme:column="'wide'">
-    <h1>All blog Articles</h1>
+  <div id="show-blogs">
+    <h1>List Blog TItles</h1>
     <input type="text" v-model="search" placeholder="Search blogs" />
-    <div
-      v-for="(blog, index) in filteredBlogs"
-      v-bind:key="index"
-      class="single-blog"
-    >
+    <div v-for="(blog, index) in filteredBlogs" v-bind:key="index" class="single-blog">
       <h2 v-rainbow>{{ blog.title | touppercase }}</h2>
       <article>{{ blog.body | snippet }}</article>
     </div>
@@ -14,24 +10,22 @@
 </template>
 
 <script>
-import seachMixim from '../mixins/searchMixin'
+import seachMixin from "../mixins/searchMixin";
 
 export default {
   data() {
     return {
       blogs: [],
-      search: ''
+      search: ""
     };
   },
   methods: {},
   created() {
     this.$http
-      .get('https://jsonplaceholder.typicode.com/posts')
+      .get("https://jsonplaceholder.typicode.com/posts")
       .then(data => (this.blogs = data.body.slice(0, 10)));
   },
-  computed: {
-    
-  },
+  computed: {},
   filters: {
     //filters
     touppercase: value => {
@@ -42,13 +36,14 @@ export default {
     rainbow: {
       bind(el, binding, vnode) {
         el.style.color =
-          '#' +
+          "#" +
           Math.random()
             .toString()
             .slice(2, 8);
       }
     }
-  }
+  },
+  mixins: [seachMixin]
 };
 </script>
 
